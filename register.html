@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register Form</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0d5cab, #1e90ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* BOX */
+.register-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* TITLE */
+.register-box h2 {
+    margin-bottom: 15px;
+    color: #0d5cab;
+}
+
+/* INPUTS */
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* PASSWORD BOX */
+.password-box {
+    position: relative;
+    margin: 8px 0;
+}
+
+.password-box input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* EYE ICON */
+.eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* INPUT FOCUS */
+.register-box input:focus {
+    border-color: #0d5cab;
+    outline: none;
+    box-shadow: 0 0 5px rgba(13,92,171,0.5);
+}
+
+/* RADIO GROUP */
+.gender {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.gender h5 {
+    margin-bottom: 5px;
+}
+
+.gender label {
+    margin-right: 15px;
+}
+
+/* BUTTONS */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* REGISTER BUTTON */
+.register-btn {
+    background: #0d5cab;
+    color: white;
+}
+
+.register-btn:hover {
+    background: #094a8f;
+}
+
+/* BACK BUTTON */
+.back-btn {
+    background: #777;
+    color: white;
+}
+
+.back-btn:hover {
+    background: #555;
+}
+
+/* MESSAGE */
+#message {
+    margin-top: 10px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="register-box">
+    <h2>Register Form</h2>
+
+    <input type="text" id="fullname" placeholder="Full Name">
+    <input type="text" id="username" placeholder="Username">
+    <input type="email" id="email" placeholder="Email">
+
+    <!-- GENDER -->
+    <div class="gender">
+        <h5>Gender</h5>
+        <label><input type="radio" name="gender" value="male"> Male</label>
+        <label><input type="radio" name="gender" value="female"> Female</label>
+        <label><input type="radio" name="gender" value="other"> Other</label>
+    </div>
+
+    <!-- STATUS -->
+    <div class="gender">
+        <h5>Marital Status</h5>
+        <label><input type="radio" name="status" value="single"> Single</label>
+        <label><input type="radio" name="status" value="married"> Married</label>
+        <label><input type="radio" name="status" value="divorced"> Divorced</label>
+    </div>
+
+    <input type="date" id="dob">
+
+    <!-- PASSWORD -->
+    <div class="password-box">
+        <input type="password" id="password" placeholder="Password">
+        <span class="eye" onclick="togglePassword('password')">👁</span>
+    </div>
+
+    <!-- CONFIRM PASSWORD -->
+    <div class="password-box">
+        <input type="password" id="confirm" placeholder="Confirm Password">
+        <span class="eye" onclick="togglePassword('confirm')">👁</span>
+    </div>
+
+    <button class="register-btn" onclick="register()">Register</button>
+    <button class="back-btn" onclick="goBack()">Back</button>
+
+    <p id="message"></p>
+</div>
+
+<script>
+function togglePassword(id) {
+    let input = document.getElementById(id);
+
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+
+function register() {
+    let name = document.getElementById("fullname").value.trim();
+    let username = document.getElementById("username").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let dob = document.getElementById("dob").value;
+    let pass = document.getElementById("password").value;
+    let confirm = document.getElementById("confirm").value;
+
+    let gender = document.querySelector('input[name="gender"]:checked');
+    let status = document.querySelector('input[name="status"]:checked');
+
+    let message = document.getElementById("message");
+
+    message.style.color = "red";
+    message.innerText = "";
+
+    if(name === "" || username === "" || email === "" || dob === "" || pass === "" || confirm === ""){
+        message.innerText = "Fill all fields!";
+        return;
+    }
+
+    if(!gender || !status){
+        message.innerText = "Select all options!";
+        return;
+    }
+
+    if(pass !== confirm){
+        message.innerText = "Passwords do not match!";
+        return;
+    }
+
+    message.style.color = "green";
+    message.innerText = "Registration Successful!";
+}
+
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login Form</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #0d5cab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Login button */
+.login-btn {
+    background: #0d5cab;
+    color: white;
+}
+
+/* Back button */
+.back-btn {
+    background: gray;
+    color: white;
+}
+
+.login-btn:hover {
+    background: #094a8f;
+}
+
+.back-btn:hover {
+    background: #555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+    <h2 style="text-align: center; color: #0073e6;">Login</h2>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button class="login-btn" onclick="login()">Login</button>
+
+    
+    
+    <button class="back-btn" onclick="goBack()">Back</button>
+        <p>Don't have account.<a href="register.html">register</a></p>
+
+    <p id="message" style="color:red;"></p>
+</div>
+
+<script>
+function login() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if(user === "admin" && pass === "1234"){
+        alert("Login Successful!");
+        window.location.href = "home.html";
+    } else {
+        document.getElementById("message").innerText = "Wrong Username or Password";
+    }
+}
+
+
+function goBack() {
+    window.history.back(); 
+}
+</script>
+
+</body>
+
+  
+</html>

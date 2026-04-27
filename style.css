@@ -1,0 +1,84 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #99a098;
+}
+
+/* Header */
+header {
+    background: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation bar */
+nav {
+    background: #555;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: yellow;
+}
+
+/* Main content */
+main {
+    padding: 20px;
+    min-height: 400px;
+    background: white;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+}
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+#departments {
+    text-align: center;
+    padding: 20px;
+}
+
+.dept {
+    background-color: #eff4ca;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+}
+.logo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 100px;
+}

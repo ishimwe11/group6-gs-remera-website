@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GS Remera TSS</title>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(13deg, #004080, #0073e6);
+      color: white;
+      padding: 0% 0px;
+      text-align: center;
+      animation: fadeIn 1s ease-in;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+    }
+
+    nav a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    nav a:hover { color: #0073e6; }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      animation: fadeUp 1s ease;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .department {
+      background: #e6f0ff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .department:hover { transform: translateY(-5px); }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .login-box {
+      max-width: 400px;
+      margin: auto;
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #0073e6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover { background: #005bb5; }
+
+  .footer {
+    background: #00264d;
+    color: white;
+    padding: 40px 20px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footer-box h3 {
+    margin-bottom: 10px;
+}
+
+.footer-box a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-box a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slider {
+    width: 400px;
+    height: 250px;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.footer {
+    background: #00264d;
+    color: white;
+    padding: 40px 20px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footer-box h3 {
+    margin-bottom: 10px;
+}
+
+.footer-box a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-box a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    font-size: 14px;
+}
+  </style>
+</head>
+<body>
+
+<header>
+           <div class="header">
+   <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+    
+   
+    <img src="LOG0.png" alt="GS REMERA Logo"
+         width="150" height="100" />
+
+    
+    <img src="motto.png" alt="School Motto"
+         width="150" height="100" />
+         
+
+</div>
+    <div style="text-align:center ; font-size: 50px;">WEBSITE OF GS REMERA/TSS</div>
+
+</div>
+  
+  <p>Empowering Students with Knowledge and Skills</p>
+</header>
+
+   <nav>
+        <a href="index.html">Home</a>
+<a href="Departments.html">Departments</a>
+<a href="stakeholder.html">Stakeholder</a>
+<a href="account.html">Acounting</a>
+<a href="portal.html">Marks Portal</a>
+<a href="events.html">Events&Publication</a>
+<a href="LOGIN.HTML">LOGIN</a>
+
+    </nav>
+
+
+<div class="container">
+    <h2 style="text-align: center; color: #0073e6;">Accounting Dashboard</h2>
+
+   
+    <h3 id="balance">Net Balance: 0 RWF</h3>
+
+   
+    <input type="text" id="desc" placeholder="Description">
+    <input type="number" id="amount" placeholder="Amount">
+    <input type="date" id="date">
+
+    <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+    </select>
+
+    <button onclick="addTransaction()">Add Transaction</button>
+
+    <!-- TABLE -->
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <!-- CHART -->
+    <canvas id="chart"></canvas>
+
+</div>
+
+<script>
+let descInput = document.getElementById("desc");
+let amountInput = document.getElementById("amount");
+let typeInput = document.getElementById("type");
+let dateInput = document.getElementById("date");
+
+let transactions = JSON.parse(localStorage.getItem("data")) || [];
+
+let chart; // important
+
+function save() {
+    localStorage.setItem("data", JSON.stringify(transactions));
+}
+
+function addTransaction() {
+    let desc = descInput.value;
+    let amount = parseFloat(amountInput.value);
+    let type = typeInput.value;
+    let date = dateInput.value;
+
+    if(!desc || !amount || !date){
+        alert("Fill all fields");
+        return;
+    }
+
+    transactions.push({desc, amount, type, date});
+    save();
+    resetInputs();
+    show();
+}
+
+function deleteTransaction(index){
+    transactions.splice(index, 1);
+    save();
+    show();
+}
+
+function resetInputs(){
+    descInput.value = "";
+    amountInput.value = "";
+    dateInput.value = "";
+}
+
+function show() {
+    let table = document.getElementById("tableBody");
+    table.innerHTML = "";
+
+    let income = 0, expense = 0;
+
+    transactions.forEach((t, i) => {
+        let row = table.insertRow();
+        row.innerHTML = `
+            <td>${t.desc}</td>
+            <td>${t.amount}</td>
+            <td>${t.type}</td>
+            <td>${t.date}</td>
+            <td><button class="delete-btn" onclick="deleteTransaction(${i})">Delete</button></td>
+        `;
+
+        if(t.type === "income") income += t.amount;
+        else expense += t.amount;
+    });
+
+    // BALANCE
+    let balance = income - expense;
+    let balanceText = document.getElementById("balance");
+
+    balanceText.innerText = "Net Balance: " + balance + " RWF";
+    balanceText.style.color = balance >= 0 ? "green" : "red";
+
+    drawChart(income, expense);
+}
+
+function drawChart(income, expense) {
+
+    if(chart){
+        chart.destroy(); // fix duplicate chart bug
+    }
+
+    chart = new Chart(document.getElementById("chart"), {
+        type: "bar",
+        data: {
+            labels: ["Income", "Expense"],
+            datasets: [{
+                label: "Amount",
+                data: [income, expense]
+            }]
+        }
+    });
+}
+
+show();
+</script>
+
+</body>
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- ABOUT -->
+    <div class="footer-box">
+      <h3>GS Remera TSS</h3>
+      <p>Empowering students with knowledge, skills, and values for a better future.</p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a><br>
+      <a href="Departments.html">Departments</a><br>
+      <a href="stakeholder.html">Stakeholder</a><br>
+      <a href="portal.html">Marks Portal</a>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>📍 Rulindo District, Rwanda</p>
+      <p>📞 +250 7XX XXX XXX</p>
+      <p>📧 gsremera@email.com</p>
+    </div>
+
+    <!-- SOCIAL -->
+    <div class="footer-box">
+      <h3>Follow Us</h3>
+     <div class="footer-box">
+  <h3>Follow Us</h3>
+
+  <a href="https://www.facebook.com/" target="">🌐 Facebook</a><br>
+  <a href="https://twitter.com/" target="">🐦 Twitter</a><br>
+  <a href="https://www.youtube.com/" target="">▶️ YouTube</a>
+
+</div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 GS Remera TSS | All Rights Reserved</p>
+  </div>
+</footer>
+
+</html>
