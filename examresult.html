@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Exam Results</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #eef2f7;
+    margin: 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    background: #ddd;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+    color: #2e7d32;
+}
+
+/* Search */
+.search-box {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-box input {
+    padding: 12px;
+    width: 60%;
+    border-radius: 8px;
+    border: 2px solid black;
+}
+
+/* Dropdown */
+.filter-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filter-box select {
+    padding: 10px;
+    width: 250px;
+    border-radius: 8px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #2e7d32;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #bbb;
+}
+
+/* Status */
+.pass { color: green; font-weight: bold; }
+.fail { color: red; font-weight: bold; }
+
+/* Button */
+button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: blueviolet;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 Student Exam Results</h1>
+
+<!-- SEARCH -->
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search by student name...">
+</div>
+
+
+<div class="filter-box">
+<select id="classFilter">
+    <option value="">🎓 All Classes</option>
+    <option selected>S1</option>
+    <option>S2</option>
+    <option >S3</option>
+    <option>S4</option>
+    <option>l3</option>
+    <option>l4</option>
+    <option>l5</option>
+    <option>S5</option>
+    <option>S6</option>
+</select>
+</div>
+
+<!-- TABLE -->
+<table>
+<thead>
+<tr>
+<th>Student Name</th>
+<th>Class</th>
+<th>Math</th>
+<th>English</th>
+<th>Science</th>
+<th>Total</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="tableBody">
+<tr>
+<td>didier</td>
+<td>S6</td>
+<td>88</td>
+<td>98</td>
+<td>90</td>
+<td>254</td>
+<td class="pass">Pass</td>
+</tr>
+<tr>
+<td>gisubizo fabrice</td>
+<td>S5</td>
+<td>88</td>
+<td>90</td>
+<td>90</td>
+<td>254</td>
+<td class="pass">Pass</td>
+</tr>
+
+<tr>
+<td> James</td>
+<td>l5</td>
+<td>88</td>
+<td>76</td>
+<td>90</td>
+<td>254</td>
+<td class="pass">Pass</td>
+</tr>
+    <tr>
+<td>ange</td>
+<td>l4</td>
+<td>88</td>
+<td>20</td>
+<td>90</td>
+<td>254</td>
+<td class="pass">Pass</td>
+</tr>
+    <tr>
+<td>ingabire hussein</td>
+<td>l3</td>
+<td>88</td>
+<td>76</td>
+<td>90</td>
+<td>254</td>
+<td class="pass">Pass</td>
+</tr>
+<tr>
+<td>John Doe</td>
+<td>S3</td>
+<td>78</td>
+<td>65</td>
+<td>30</td>
+<td>223</td>
+<td class="pass">Pass</td>
+</tr>
+
+<tr>
+<td>ishimwe Smith</td>
+<td>S4</td>
+<td>45</td>
+<td>50</td>
+<td>48</td>
+<td>143</td>
+<td class="fail">Fail</td>
+</tr>
+
+<tr>
+<td>dada</td>
+<td>s1</td>
+<td>88</td>
+<td>76</td>
+<td>90</td>
+<td>254</td>
+<td class="pass">Pass</td>
+</tr>
+<tr>
+<td>Peter kamana</td>
+<td>S2</td>
+<td>88</td>
+<td>76</td>
+<td>90</td>
+<td>254</td>
+<td class="pass">Pass</td>
+</tr>
+</tbody>
+</table>
+
+<button onclick="goBack()">Back</button>
+
+</div>
+
+<script>
+const searchInput = document.getElementById("searchInput");
+const classFilter = document.getElementById("classFilter");
+
+function filterTable() {
+    let searchValue = searchInput.value.toLowerCase();
+    let classValue = classFilter.value.toLowerCase();
+
+    let rows = document.querySelectorAll("#tableBody tr");
+
+    rows.forEach(row => {
+        let name = row.children[0].textContent.toLowerCase();
+        let className = row.children[1].textContent.toLowerCase();
+
+        let matchName = name.includes(searchValue);
+        let matchClass = classValue === "" || className === classValue;
+
+        if (matchName && matchClass) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+
+// Events
+searchInput.addEventListener("keyup", filterTable);
+classFilter.addEventListener("change", filterTable);
+
+// Run default filter (S3)
+window.onload = filterTable;
+
+// Back button
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

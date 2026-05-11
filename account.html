@@ -1,419 +1,1070 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GS Remera TSS</title>
-  <style>
-    html { scroll-behavior: smooth; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #333;
-    }
+<title>GS Remera TSS Accounting System</title>
 
-    header {
-      background: linear-gradient(13deg, #004080, #0073e6);
-      color: white;
-      padding: 0% 0px;
-      text-align: center;
-      animation: fadeIn 1s ease-in;
-    }
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #ffffff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-    }
+<style>
 
-    nav a {
-      padding: 15px 20px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-
-    nav a:hover { color: #0073e6; }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      animation: fadeUp 1s ease;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .department {
-      background: #e6f0ff;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .department:hover { transform: translateY(-5px); }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .login-box {
-      max-width: 400px;
-      margin: auto;
-      text-align: center;
-    }
-
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      padding: 10px 20px;
-      background: #0073e6;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover { background: #005bb5; }
-
-  .footer {
-    background: #00264d;
-    color: white;
-    padding: 40px 20px;
+html{
+scroll-behavior:smooth;
 }
 
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-    margin: auto;
+body{
+margin:0;
+font-family:Arial;
+background:#f5f7fa;
+color:#333;
 }
 
-.footer-box h3 {
-    margin-bottom: 10px;
+/* HEADER */
+
+header{
+background:linear-gradient(13deg,#004080,#0073e6);
+color:white;
+text-align:center;
 }
 
-.footer-box a {
-    color: #ccc;
-    text-decoration: none;
+nav{
+display:flex;
+justify-content:center;
+background:white;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+position:sticky;
+top:0;
+z-index:100;
+flex-wrap:wrap;
 }
 
-.footer-box a:hover {
-    color: #fff;
+nav a{
+padding:15px 20px;
+text-decoration:none;
+color:#333;
+font-weight:bold;
+position:relative;
 }
 
-.footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid #444;
-    padding-top: 10px;
-    font-size: 14px;
+nav a:hover{
+color:#0073e6;
 }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .slider {
-    width: 400px;
-    height: 250px;
-    position: relative;
-    margin: auto;
-    overflow: hidden;
-    border-radius: 10px;
+nav a.active::after{
+content:"";
+position:absolute;
+left:0;
+bottom:0;
+width:100%;
+height:3px;
+background:#0073e6;
+border-radius:2px;
 }
 
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+/* LOGIN */
+
+.login-box{
+max-width:400px;
+margin:50px auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+text-align:center;
 }
 
-.slide.active {
-    opacity: 1;
+input,
+select,
+button{
+padding:12px;
+margin:8px;
+border-radius:6px;
+border:1px solid #ccc;
 }
 
-.footer {
-    background: #00264d;
-    color: white;
-    padding: 40px 20px;
+input,
+select{
+width:90%;
 }
 
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-    margin: auto;
+button{
+background:#0d6efd;
+color:white;
+border:none;
+cursor:pointer;
 }
 
-.footer-box h3 {
-    margin-bottom: 10px;
+button:hover{
+background:#0056cc;
 }
 
-.footer-box a {
-    color: #ccc;
-    text-decoration: none;
+/* DASHBOARD */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
 }
 
-.footer-box a:hover {
-    color: #fff;
+.card{
+background:white;
+padding:10px;
+margin:10px auto;
+border-radius:10px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+max-width:220px;
+text-align:center;
 }
 
-.footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid #444;
-    padding-top: 10px;
-    font-size: 14px;
+.card img{
+width:100%;
+height:130px;
+object-fit:cover;
+border-radius:10px;
 }
-  </style>
+
+#balance{
+font-size:24px;
+font-weight:bold;
+margin:20px 0;
+text-align:center;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:white;
+}
+
+th{
+background:#f1f1f1;
+font-size:18px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:15px;
+text-align:center;
+}
+
+.delete-btn{
+background:red;
+padding:10px 15px;
+color:white;
+border:none;
+border-radius:8px;
+}
+
+.logout-btn{
+background:#dc3545;
+}
+
+/* FOOTER */
+
+.footer{
+background:#00264d;
+color:white;
+padding:40px 20px;
+margin-top:40px;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+max-width:1100px;
+margin:auto;
+}
+
+.footer-box a{
+color:#ccc;
+text-decoration:none;
+}
+
+.footer-box a:hover{
+color:white;
+}
+
+.footer-bottom{
+text-align:center;
+margin-top:20px;
+border-top:1px solid #444;
+padding-top:10px;
+}
+
+.summary-box{
+display:flex;
+justify-content:center;
+gap:30px;
+margin:20px 0;
+flex-wrap:wrap;
+}
+
+.summary-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+font-weight:bold;
+min-width:250px;
+text-align:center;
+max-height:300px;
+overflow:auto;
+}
+/* ================= PDF BUTTON CSS ================= */
+
+.pdf-btn{
+    background:linear-gradient(to right,#ff9800,#ff5722);
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:0.3s;
+    margin:10px 0;
+}
+
+.pdf-btn:hover{
+    transform:scale(1.05);
+    opacity:0.9;
+}
+
+</style>
 </head>
+
 <body>
 
+<!-- HEADER -->
+
 <header>
-           <div class="header">
-   <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
-    
-   
-    <img src="LOG0.png" alt="GS REMERA Logo"
-         width="150" height="100" />
 
-    
-    <img src="motto.png" alt="School Motto"
-         width="150" height="100" />
-         
+<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 20px;">
+
+<a href="index.html">
+<img src="LOG0.png" width="90" height="70">
+</a>
+
+<div style="font-size:28px;font-weight:bold;">
+GS REMERA / TSS
+</div>
+
+<img src="motto.png" width="90" height="70">
 
 </div>
-    <div style="text-align:center ; font-size: 50px;">WEBSITE OF GS REMERA/TSS</div>
 
-</div>
-  
-  <p>Empowering Students with Knowledge and Skills</p>
+<p style="font-size:14px;margin:5px 0;">
+Empowering Students with Knowledge and Skills
+</p>
+
 </header>
 
-   <nav>
-        <a href="index.html">Home</a>
+<!-- NAVIGATION -->
+
+<nav>
+
+<a href="index.html">Home</a>
 <a href="Departments.html">Departments</a>
-<a href="stakeholder.html">Stakeholder</a>
-<a href="account.html">Acounting</a>
+<a href="stakeholders.html">Stakeholder</a>
+<a href="account.html" class="active">Accounting</a>
 <a href="portal.html">Marks Portal</a>
-<a href="events.html">Events&Publication</a>
+<a href="events.html">Events & Publication</a>
 <a href="LOGIN.HTML">LOGIN</a>
 
-    </nav>
+</nav>
 
+<!-- LOGIN -->
+
+<div id="loginSection" class="login-box">
+
+<h2 style="color:#0d6efd;">
+Accountant Login
+</h2>
+
+<input type="text"
+id="username"
+placeholder="Username">
+
+<input type="password"
+id="password"
+placeholder="Password">
+
+<br>
+
+<button onclick="login()">
+Login
+</button>
+
+<p id="loginError"
+style="color:red;font-weight:bold;">
+</p>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboard"
+style="display:none;">
 
 <div class="container">
-    <h2 style="text-align: center; color: #0073e6;">Accounting Dashboard</h2>
 
-   
-    <h3 id="balance">Net Balance: 0 RWF</h3>
+<div class="card">
+<img src="contabure.jpeg">
+</div>
 
-   
-    <input type="text" id="desc" placeholder="Description">
-    <input type="number" id="amount" placeholder="Amount">
-    <input type="date" id="date">
+<h2 style="text-align:center;color:blue;">
+Accounting Dashboard
+</h2>
 
-    <select id="type">
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-    </select>
+<div id="balance">
+Net Balance: 0 RWF
+</div>
 
-    <button onclick="addTransaction()">Add Transaction</button>
+<div style="text-align:center;">
 
-    <!-- TABLE -->
-    <table>
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-    </table>
+<input type="text"
+id="desc"
+placeholder="Description">
 
-    <!-- CHART -->
-    <canvas id="chart"></canvas>
+<input type="number"
+id="amount"
+placeholder="Amount">
+
+<input type="date"
+id="date">
+
+<select id="type">
+
+<option value="income">
+Income
+</option>
+
+<option value="expense">
+Expense
+</option>
+
+</select>
+
+<br>
+
+<button onclick="addTransaction()">
+Add Transaction
+</button>
+
+<button class="logout-btn"
+onclick="logout()">
+Logout
+</button>
 
 </div>
+
+<!-- TRANSACTION TABLE -->
+
+<table>
+
+<thead>
+
+<tr>
+<th>Description</th>
+<th>Amount</th>
+<th>Type</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+<br><br>
+
+<!-- CHART -->
+
+<canvas id="myChart" height="100"></canvas>
+
+<!-- STUDENTS -->
+
+<h2 style="text-align:center;color:#0073e6;margin-top:40px;">
+Students Payment System
+</h2>
+
+<div style="text-align:center;margin-bottom:20px;">
+
+<button onclick="addStudent()">
+➕ Add Student
+</button>
+
+</div>
+
+<div class="summary-box">
+
+<div class="summary-card">
+
+<h3>
+Paid Students
+</h3>
+
+<p>
+Total:
+<span id="paidCount">0</span>
+</p>
+
+<div id="paidNames"
+style="text-align:left;">
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+Unpaid Students
+</h3>
+
+<p>
+Total:
+<span id="unpaidCount">0</span>
+</p>
+
+<div id="unpaidNames"
+style="text-align:left;">
+</div>
+
+</div>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Student Name</th>
+<th>Amount Paid</th>
+<th>Status</th>
+<th>Payment Method</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="studentTable"></tbody>
+
+</table>
+
+<br>
+
+<div style="text-align:center;">
+
+<button onclick="printPage()">
+🖨 Print
+</button>
+
+<button onclick="downloadPDF()">
+📥 Download PDF
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- SCRIPT -->
 
 <script>
-let descInput = document.getElementById("desc");
-let amountInput = document.getElementById("amount");
-let typeInput = document.getElementById("type");
-let dateInput = document.getElementById("date");
 
-let transactions = JSON.parse(localStorage.getItem("data")) || [];
+/* ================= LOGIN ================= */
 
-let chart; // important
+const correctUsername = "accountant";
+const correctPassword = "1234";
 
-function save() {
-    localStorage.setItem("data", JSON.stringify(transactions));
+function login(){
+
+event.preventDefault();
+
+let username =
+document.getElementById("username").value;
+
+let password =
+document.getElementById("password").value;
+
+let error =
+document.getElementById("loginError");
+
+if(username === correctUsername &&
+password === correctPassword){
+
+localStorage.setItem("loggedIn","true");
+
+document.getElementById("loginSection")
+.style.display = "none";
+
+document.getElementById("dashboard")
+.style.display = "block";
+
+error.innerHTML = "";
+
+displayTable();
+updateBalance();
+updateChart();
+displayStudents();
+
+}else{
+
+error.innerHTML =
+"❌ Username cyangwa Password ntabwo ari byo.";
+
 }
 
-function addTransaction() {
-    let desc = descInput.value;
-    let amount = parseFloat(amountInput.value);
-    let type = typeInput.value;
-    let date = dateInput.value;
-
-    if(!desc || !amount || !date){
-        alert("Fill all fields");
-        return;
-    }
-
-    transactions.push({desc, amount, type, date});
-    save();
-    resetInputs();
-    show();
 }
 
-function deleteTransaction(index){
-    transactions.splice(index, 1);
-    save();
-    show();
+function logout(){
+
+localStorage.removeItem("loggedIn");
+
+document.getElementById("dashboard")
+.style.display = "none";
+
+document.getElementById("loginSection")
+.style.display = "block";
+
 }
 
-function resetInputs(){
-    descInput.value = "";
-    amountInput.value = "";
-    dateInput.value = "";
+/* CHECK LOGIN */
+
+if(localStorage.getItem("loggedIn")==="true"){
+
+document.getElementById("loginSection")
+.style.display = "none";
+
+document.getElementById("dashboard")
+.style.display = "block";
+
 }
 
-function show() {
-    let table = document.getElementById("tableBody");
-    table.innerHTML = "";
+/* ================= ACCOUNTING ================= */
 
-    let income = 0, expense = 0;
+let transactions =
+JSON.parse(localStorage.getItem("transactions")) || [];
 
-    transactions.forEach((t, i) => {
-        let row = table.insertRow();
-        row.innerHTML = `
-            <td>${t.desc}</td>
-            <td>${t.amount}</td>
-            <td>${t.type}</td>
-            <td>${t.date}</td>
-            <td><button class="delete-btn" onclick="deleteTransaction(${i})">Delete</button></td>
-        `;
+function addTransaction(){
 
-        if(t.type === "income") income += t.amount;
-        else expense += t.amount;
-    });
+let desc =
+document.getElementById("desc").value;
 
-    // BALANCE
-    let balance = income - expense;
-    let balanceText = document.getElementById("balance");
+let amount =
+Number(document.getElementById("amount").value);
 
-    balanceText.innerText = "Net Balance: " + balance + " RWF";
-    balanceText.style.color = balance >= 0 ? "green" : "red";
+let date =
+document.getElementById("date").value;
 
-    drawChart(income, expense);
+let type =
+document.getElementById("type").value;
+
+if(desc==="" || amount==="" || date===""){
+
+alert("Shyiramo amakuru yose!");
+return;
+
 }
 
-function drawChart(income, expense) {
+transactions.push({
+desc,
+amount,
+type,
+date
+});
 
-    if(chart){
-        chart.destroy(); // fix duplicate chart bug
-    }
+saveData();
+displayTable();
+updateBalance();
+updateChart();
 
-    chart = new Chart(document.getElementById("chart"), {
-        type: "bar",
-        data: {
-            labels: ["Income", "Expense"],
-            datasets: [{
-                label: "Amount",
-                data: [income, expense]
-            }]
+document.getElementById("desc").value="";
+document.getElementById("amount").value="";
+document.getElementById("date").value="";
+
+}
+
+function deleteRow(index){
+
+transactions.splice(index,1);
+
+saveData();
+displayTable();
+updateBalance();
+updateChart();
+
+}
+
+function displayTable(){
+
+let table =
+document.getElementById("tableBody");
+
+table.innerHTML = "";
+
+transactions.forEach((t,index)=>{
+
+table.innerHTML += `
+
+<tr>
+
+<td>${t.desc}</td>
+
+<td>${t.amount} RWF</td>
+
+<td>${t.type}</td>
+
+<td>${t.date}</td>
+
+<td>
+
+<button class="delete-btn"
+onclick="deleteRow(${index})">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+function updateBalance(){
+
+let total = 0;
+
+transactions.forEach(t=>{
+
+if(t.type==="income"){
+total += t.amount;
+}else{
+total -= t.amount;
+}
+
+});
+
+let bal =
+document.getElementById("balance");
+
+bal.innerHTML =
+"Net Balance: " + total + " RWF";
+
+bal.style.color =
+total >= 0 ? "green" : "red";
+
+}
+
+function saveData(){
+
+localStorage.setItem(
+"transactions",
+JSON.stringify(transactions)
+);
+
+}
+
+/* ================= CHART ================= */
+
+let chart;
+
+function updateChart(){
+
+let income = 0;
+let expense = 0;
+
+transactions.forEach(t=>{
+
+if(t.type==="income"){
+income += t.amount;
+}else{
+expense += t.amount;
+}
+
+});
+
+let ctx =
+document.getElementById("myChart")
+.getContext("2d");
+
+if(chart){
+chart.destroy();
+}
+
+chart = new Chart(ctx,{
+
+type:"bar",
+
+data:{
+
+labels:["Income","Expense"],
+
+datasets:[{
+
+label:"Money Flow",
+
+data:[income,expense],
+
+backgroundColor:["green","red"]
+
+}]
+
+}
+
+});
+
+}
+
+/* ================= STUDENTS ================= */
+
+let students =
+JSON.parse(localStorage.getItem("students")) || [];
+
+/* CREATE 100 STUDENTS */
+
+if(students.length === 0){
+
+for(let i = 1; i <= 100; i++){
+
+if(i <= 60){
+
+students.push({
+
+name:"Student " + i,
+amount:50000,
+status:"Paid",
+method:i % 3 === 0 ? "Bank" :
+i % 3 === 1 ? "Hand" : "Code"
+
+});
+
+}else{
+
+students.push({
+
+name:"Student " + i,
+amount:0,
+status:"Unpaid",
+method:"-"
+
+});
+
+}
+
+}
+
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
+}
+
+function displayStudents(){
+
+let table =
+document.getElementById("studentTable");
+
+table.innerHTML = "";
+
+let paid = 0;
+let unpaid = 0;
+
+let paidNames = "";
+let unpaidNames = "";
+
+students.forEach((s,index)=>{
+
+if(s.status === "Paid"){
+
+paid++;
+
+paidNames +=
+"✅ " + s.name + "<br>";
+
+}else{
+
+unpaid++;
+
+unpaidNames +=
+"❌ " + s.name + "<br>";
+
+}
+
+table.innerHTML += `
+
+<tr>
+
+<td>${s.name}</td>
+
+<td>${s.amount} RWF</td>
+
+<td>${s.status}</td>
+
+<td>${s.method}</td>
+
+<td>
+
+<button onclick="markPaid(${index})">
+Mark Paid
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("paidCount")
+.innerHTML = paid;
+
+document.getElementById("unpaidCount")
+.innerHTML = unpaid;
+
+document.getElementById("paidNames")
+.innerHTML = paidNames;
+
+document.getElementById("unpaidNames")
+.innerHTML = unpaidNames;
+
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
+}
+
+function markPaid(index){
+
+let amount =
+prompt("Shyiramo amafaranga yishyuwe:");
+
+let method =
+prompt("Shyiramo uburyo bwo kwishyura: Bank / Hand / Code");
+
+if(amount !== null && method !== null){
+
+students[index].amount = amount;
+
+students[index].status = "Paid";
+
+students[index].method = method;
+
+displayStudents();
+
+}
+
+}
+
+/* ================= ADD STUDENT ================= */
+
+function addStudent(){
+
+let name =
+prompt("Shyiramo izina ry'umunyeshuri:");
+
+if(name === null || name === ""){
+return;
+}
+
+students.push({
+
+name:name,
+amount:0,
+status:"Unpaid",
+method:"-"
+
+});
+
+displayStudents();
+
+}
+
+/* ================= PRINT ================= */
+
+function printPage(){
+
+window.print();
+}
+function downloadPDF(){
+const { jsPDF } = window.jspdf;
+
+html2canvas(document.body).then(canvas=>{
+let img=canvas.toDataURL("image/png");
+let pdf=new jsPDF("p","mm","a4");
+pdf.addImage(img,"PNG",0,0,210,297);
+pdf.save("GS_Remera_Accounting.pdf");
+});
+}
+
+
+/* ================= LOAD ================= */
+
+displayTable();
+updateBalance();
+updateChart();
+displayStudents();
+
+
+/* ================= DOWNLOAD PDF FUNCTION ================= */
+
+async function downloadPDF(){
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    /* TITLE */
+    doc.setFontSize(18);
+
+    doc.text(
+        "GS REMERA TSS - Accounting Report",
+        20,
+        20
+    );
+
+    /* DATE */
+    doc.setFontSize(12);
+
+    let today = new Date();
+
+    doc.text(
+        "Generated on: " + today.toLocaleDateString(),
+        20,
+        30
+    );
+
+    /* TABLE HEADERS */
+    let y = 45;
+
+    doc.setFontSize(13);
+
+    doc.text("Description",20,y);
+    doc.text("Amount",80,y);
+    doc.text("Type",120,y);
+    doc.text("Date",160,y);
+
+    y += 10;
+
+    /* TRANSACTIONS */
+    transactions.forEach((t,index)=>{
+
+        doc.setFontSize(11);
+
+        doc.text(String(t.desc),20,y);
+
+        doc.text(
+            String(t.amount + " RWF"),
+            80,
+            y
+        );
+
+        doc.text(String(t.type),120,y);
+
+        doc.text(String(t.date),160,y);
+
+        y += 10;
+
+        /* NEW PAGE */
+        if(y > 270){
+
+            doc.addPage();
+
+            y = 20;
+
         }
+
     });
+
+    /* BALANCE */
+    y += 10;
+
+    doc.setFontSize(14);
+
+    doc.text(
+        document.getElementById("balance").innerText,
+        20,
+        y
+    );
+
+    /* SAVE PDF */
+    doc.save("Accounting_Report.pdf");
+
 }
 
-show();
 </script>
 
-</body>
+<!-- FOOTER -->
+
 <footer class="footer">
-  <div class="footer-container">
 
-    <!-- ABOUT -->
-    <div class="footer-box">
-      <h3>GS Remera TSS</h3>
-      <p>Empowering students with knowledge, skills, and values for a better future.</p>
-    </div>
+<div class="footer-container">
 
-    <!-- QUICK LINKS -->
-    <div class="footer-box">
-      <h3>Quick Links</h3>
-      <a href="index.html">Home</a><br>
-      <a href="Departments.html">Departments</a><br>
-      <a href="stakeholder.html">Stakeholder</a><br>
-      <a href="portal.html">Marks Portal</a>
-    </div>
+<div class="footer-box">
 
-    <!-- CONTACT -->
-    <div class="footer-box">
-      <h3>Contact Us</h3>
-      <p>📍 Rulindo District, Rwanda</p>
-      <p>📞 +250 7XX XXX XXX</p>
-      <p>📧 gsremera@email.com</p>
-    </div>
+<h3>GS Remera TSS</h3>
 
-    <!-- SOCIAL -->
-    <div class="footer-box">
-      <h3>Follow Us</h3>
-     <div class="footer-box">
-  <h3>Follow Us</h3>
-
-  <a href="https://www.facebook.com/" target="">🌐 Facebook</a><br>
-  <a href="https://twitter.com/" target="">🐦 Twitter</a><br>
-  <a href="https://www.youtube.com/" target="">▶️ YouTube</a>
+<p>
+Empowering students with knowledge,
+skills, and values for a better future.
+</p>
 
 </div>
-    </div>
 
-  </div>
+<div class="footer-box">
 
-  <div class="footer-bottom">
-    <p>&copy; 2026 GS Remera TSS | All Rights Reserved</p>
-  </div>
+<h3>Quick Links</h3>
+
+<a href="index.html">Home</a><br>
+<a href="Departments.html">Departments</a><br>
+<a href="stakeholder.html">Stakeholder</a><br>
+<a href="location.html">Location</a><br>
+<a href="info.html">Infographic</a>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Contact Us</h3>
+
+<p>📍 Rulindo District, Rwanda</p>
+<p>📞 +250 798390856</p>
+<p>📧 gsremera@email.com</p>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Follow Us</h3>
+
+<a href="#">🌐 Facebook</a><br>
+<a href="#">🐦 Twitter</a><br>
+<a href="#">▶️ YouTube</a>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<p>&copy; 2026 GS Remera TSS | All Rights Reserved</p>
+</div>
+
 </footer>
 
+</body>
 </html>

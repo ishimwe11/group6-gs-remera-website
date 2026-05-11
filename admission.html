@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Admission Form</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #eef2f7;
+    margin: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #2e7d32;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.row div {
+    flex: 1;
+}
+
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1b5e20;
+}
+
+/* Student list */
+ul {
+    margin-top: 20px;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    background: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+    .row {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>📝 Student Admission Form</h1>
+
+<form id="form">
+
+<div class="row">
+<div>
+<label>firstName</label>
+<input type="text" id="firstName" required>
+<label>lastName</label>
+<input type="text" id="lastName" required>
+</div>
+
+
+</div>
+
+<label>Date of Birth</label>
+<input type="date" id="dob" required>
+
+<label>Gender</label>
+<select id="gender" required>
+<option value="">Select gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>other</option>
+</select>
+
+<label>Class Applying For</label>
+<select id="class" required>
+<option value="">Select class</option>
+<option>P1</option><option>P2</option><option>P3</option><option>P4</option><option>P5</option><option>P6</option>
+<option>S1</option><option>S2</option><option>S3</option>
+<option>S4</option><option>L3</option> <option>L4</option><option>S5</option><option>S6</option>
+</select>
+
+<label>Parent/Guardian Name</label>
+<input type="text" id="parent" required>
+
+
+
+
+<button type="submit">Submit Application</button>
+
+</form>
+
+<h2> Saved Students</h2>
+<ul id="list"></ul>
+
+<button onclick="goBack()" style="background-color: blueviolet;">Back</button>
+
+</div>
+
+<script>
+
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
+
+function display() {
+  let list = document.getElementById("list");
+  list.innerHTML = "";
+
+  students.forEach(s => {
+    list.innerHTML += `
+    <li>
+      <strong>${s.name}</strong><br>
+      Class: ${s.class}<br>
+      DOB: ${s.dob}<br>
+      Gender: ${s.gender}<br>
+      Parent: ${s.parent}<br>
+     
+    </li>`;
+  });
+}
+display();
+
+
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let student = {
+    name: document.getElementById("firstName").value + " " +
+          document.getElementById("lastName").value,
+    dob: document.getElementById("dob").value,
+    gender: document.getElementById("gender").value,
+    class: document.getElementById("class").value,
+    parent: document.getElementById("parent").value,
+    
+    
+  };
+
+  students.push(student);
+  localStorage.setItem("students", JSON.stringify(students));
+
+  display();
+  this.reset();
+});
+
+// Back button
+function goBack() {
+    window.history.back();
+}
+const searchInput = document.querySelector("input");
+
+searchInput.addEventListener("keyup", function () {
+    let value = this.value.toLowerCase();
+    let rows = document.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+        let name = row.children[0].textContent.toLowerCase();
+
+        if (name.includes(value)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+});
+</script>
+
+</body>
+</html>

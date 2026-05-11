@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi Language</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+    text-align:center;
+    padding:50px;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    max-width:500px;
+    margin:auto;
+}
+
+select{
+    padding:10px;
+    font-size:16px;
+    margin-bottom:20px;
+}
+
+h1{
+    color:#0077cc;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Language Selector -->
+    <select onchange="changeLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="sw">Kiswahili</option>
+    </select>
+
+    <!-- Text -->
+    <h1 id="title">WEBSITE OF GS REMERA</h1>
+
+
+</div>
+
+<script>
+
+function changeLanguage(lang){
+
+    // English
+    if(lang=="en"){
+        document.getElementById("title").innerHTML="Welcome";
+        document.getElementById("text").innerHTML="This is a multilingual website.";
+    }
+
+    // French
+    else if(lang=="fr"){
+        document.getElementById("title").innerHTML="Bienvenue";
+        document.getElementById("text").innerHTML="Ceci est un site multilingue.";
+    }
+
+    // Kiswahili
+    else if(lang=="sw"){
+        document.getElementById("title").innerHTML="Karibu";
+        document.getElementById("text").innerHTML="Hii ni tovuti ya lugha nyingi.";
+    }
+
+}
+
+</script>
+
+</body>
+</html>

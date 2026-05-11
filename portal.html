@@ -1,529 +1,588 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Ultimate Marks Portal</title>
-<script src="https://unpkg.com/vue@3"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GS Remera TSS</title>
 
-<style>
-     html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #333;
+  <style>
+    html{
+      scroll-behavior:smooth;
     }
 
-    header {
-      background: linear-gradient(13deg, #004080, #0073e6);
-      color: white;
-      padding: 0% 0px;
-      text-align: center;
-      animation: fadeIn 1s ease-in;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #ffffff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-    }
-
-    nav a {
-      padding: 15px 20px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-
-    nav a:hover { color: #0073e6; }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      animation: fadeUp 1s ease;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .department {
-      background: #e6f0ff;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .department:hover { transform: translateY(-5px); }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .login-box {
-      max-width: 400px;
-      margin: auto;
-      text-align: center;
-    }
-
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      padding: 10px 20px;
-      background: #0073e6;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover { background: #005bb5; }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #004080;
-      color: white;
-      margin-top: 30px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .slider {
-    width: 400px;
-    height: 250px;
-    position: relative;
-    margin: auto;
-    overflow: hidden;
-    border-radius: 10px;
+   :root{
+  --bg:#eef2f7;
+  --card:#ffffff;
+  --text:#222;
+  --primary:#0073e6;
+  --primary-dark:#005bb5;
+  --danger:#e53935;
+  --success:#2e7d32;
+  --warning:#f9a825;
+  --shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+/* RESET */
+*{
+  box-sizing:border-box;
+  transition:0.25s ease;
 }
 
-.slide.active {
-    opacity: 1;
+html{
+  scroll-behavior:smooth;
 }
 
-.footer {
-    background: #00264d;
-    color: white;
-    padding: 40px 20px;
+body{
+  margin:0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-    margin: auto;
+/* DARK MODE */
+body.dark{
+  --bg:#0b1220;
+  --card:#162235;
+  --text:#ffffff;
+  --shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
-.footer-box h3 {
-    margin-bottom: 10px;
+/* HEADER STYLE (niba uyikoresha) */
+header{
+  background:linear-gradient(135deg,#004080,#00aaff);
+  color:white;
+  padding:25px;
+  text-align:center;
+  font-size:22px;
+  font-weight:bold;
+  letter-spacing:1px;
 }
 
-.footer-box a {
-    color: #ccc;
-    text-decoration: none;
+/* NAV */
+nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  background:var(--card);
+  box-shadow:var(--shadow);
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
-.footer-box a:hover {
-    color: #fff;
+nav a{
+  padding:14px 18px;
+  text-decoration:none;
+  color:var(--text);
+  font-weight:600;
+  position:relative;
 }
 
-.footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid #444;
-    padding-top: 10px;
-    font-size: 14px;
+nav a:hover{
+  color:var(--primary);
+  transform:translateY(-2px);
 }
-body {
-    font-family: Arial;
-    background: #eef2f7;
-    padding: 20px;
+
+nav a::after{
+  content:"";
+  position:absolute;
+  bottom:5px;
+  left:50%;
+  width:0;
+  height:3px;
+  background:var(--primary);
+  transition:0.3s;
+  transform:translateX(-50%);
+  border-radius:10px;
 }
+
+nav a:hover::after{
+  width:60%;
+}
+
+/* CONTAINER */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
+  margin:20px 0;
+  box-shadow:var(--shadow);
+  animation:fadeUp 0.6s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+/* INPUTS */
+input,select{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+  outline:none;
+  background:white;
+}
+
+body.dark input,
+body.dark select{
+  background:#0f1a2b;
+  color:white;
+  border:1px solid #2a3a55;
+}
+
+/* BUTTONS */
+button{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:var(--primary);
+  color:white;
+  font-weight:bold;
+  box-shadow:0 5px 12px rgba(0,115,230,0.3);
+}
+
+button:hover{
+  background:var(--primary-dark);
+  transform:scale(1.03);
+}
+
+/* SPECIAL BUTTONS */
+.btn-danger{background:var(--danger);}
+.btn-success{background:var(--success);}
+.btn-warning{background:var(--warning); color:black;}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:var(--card);
+  border-radius:12px;
+  overflow:hidden;
+}
+
+th{
+  background:var(--primary);
+  color:white;
+  padding:12px;
+}
+
+td{
+  padding:10px;
+  border-bottom:1px solid rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+tr:hover{
+  background:rgba(0,115,230,0.08);
+}
+
+/* STATUS */
+.pass{color:var(--success); font-weight:bold;}
+.fail{color:var(--danger); font-weight:bold;}
 
 /* LOGIN */
-.login-box {
-    max-width: 300px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+.login{
+  max-width:400px;
+  margin:120px auto;
+  padding:30px;
+  background:var(--card);
+  border-radius:15px;
+  box-shadow:var(--shadow);
+  text-align:center;
 }
 
-/* PORTAL */
-.container {
-    max-width: 1000px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
+/* FOOTER */
+.footer{
+  background:#001a33;
+  color:white;
+  padding:40px 20px;
+  margin-top:30px;
 }
 
-input, select, button {
-    padding: 8px;
-    margin: 5px;
-    width: 100%;
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  max-width:1100px;
+  margin:auto;
 }
 
-button {
-    background: #0d5cab;
-    color: white;
-    border: none;
-    cursor: pointer;
+.footer-box a{
+  color:#ccc;
+  text-decoration:none;
 }
 
-.delete-btn {
-    background: rgb(234, 8, 155);
+.footer-box a:hover{
+  color:white;
 }
 
-.save-btn {
-    background: green;
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
-.stats {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    font-weight: bold;
-}
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{
+    flex-direction:column;
+  }
 
-table {
-    width: 100%;
-    margin-top: 10px;
-    border-collapse: collapse;
-}
+  button{
+    font-size:14px;
+  }
 
-th, td {
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: center;
+  table{
+    font-size:13px;
+  }
 }
 </style>
 </head>
 
 <body>
-<header>
-           <div class="header">
-   <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
-    
-   
-    <img src="LOG0.png" alt="GS REMERA Logo"
-         width="150" height="100" />
 
-    
-    <img src="motto.png" alt="School Motto"
-         width="150" height="100" />
-         
-
-</div>
-    <div style="text-align:center ; font-size: 50px;">WEBSITE OF GS REMERA/TSS</div>
-
-</div>
-  
-  <p>Empowering Students with Knowledge and Skills</p>
-</header>
-
-   <nav>
-        <a href="index.html">Home</a>
-<a href="Departments.html">Departments</a>
-<a href="stakeholder.html">Stakeholder</a>
-<a href="account.html">Acounting</a>
-<a href="portal.html">Marks Portal</a>
-<a href="events.html">Events&Publication</a>
-<a href="LOGIN.HTML">LOGIN</a>
-
-    </nav>
 <div id="app">
 
-
-<div v-if="!loggedIn" class="login-box">
-    <h2 style="color: #0073e6;">Teacher Login</h2>
-    <input v-model="username" placeholder="Username">
-    <input v-model="password" type="password" placeholder="Password">
-    <button @click="login">Login</button>
-    <p style="color:red">{{ error }}</p>
+<!-- LOGIN -->
+<div v-if="!logged" class="login">
+  <h2>login</h2>
+  <input v-model="user" placeholder="Username">
+  <input v-model="pass" type="password" placeholder="Password">
+  <button @click="login">login</button>
+  <p style="color:red"> error </p>
 </div>
 
-
+<!-- SYSTEM -->
 <div v-else class="container">
-    <h2 style="text-align: center; color: #0073e6;">students Marks Portal</h2>
-    <button @click="logout">Logout</button>
 
-   
-    <div class="stats">
-        <span>Class Avg: {{ getClassAverage() }}</span>
-        <span>Pass: {{ passCount }}</span>
-        <span>Fail: {{ failCount }}</span>
-    </div>
+<div class="card">
 
-    <select v-model="level">
-        <option value="nursery">Nursery</option>
-        <option value="primary">Primary</option>
-        <option value="secondary">Secondary</option>
-        <option value="tss">TSS</option>
-    </select>
+<h2>title</h2>
 
-    <input v-model="name" placeholder="Student Name">
-    <button @click="randomName"> Generate Name</button>
+<select v-model="lang" @change="saveSettings">
+  <option value="en">English</option>
+  <option value="fr">Français</option>
+  <option value="sw">Kiswahili</option>
+</select>
 
-    
-    <div v-for="subject in subjects[level]" :key="subject">
-        <input v-model.number="marks[subject]" type="number" :placeholder="subject">
-    </div>
+<button @click="toggleDark">
+  dark ? "Light Mode" : "Dark Mode"
+</button>
 
-    <button @click="addStudent">Add Student</button>
-    <button class="save-btn" @click="save"> Save Data</button>
+<input v-model="search" :placeholder="t.search">
 
-    <input v-model="search" placeholder="Search...">
+<input v-model="name" :placeholder="t.name">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Level</th>
-                <th>Average</th>
-                <th>Sum</th>
-                <th>Grade</th>
-                <th>Action</th>
-            </tr>
-        </thead>
+<select v-model="level">
+  <option value="primary">primary</option>
+  <option value="secondary">secondary</option>
+  <option value="tss">tss</option>
+</select>
 
-        <tbody>
-            <tr v-for="(s, i) in filteredStudents" :key="i">
-                <td>{{ s.name }}</td>
-                <td>{{ s.level }}</td>
-                <td>{{ getAverage(s) }}</td>
-                <td>{{ getSum(s) }}</td>
-                <td>{{ getGrade(s) }}</td>
-                <td>
-                    <button class="delete-btn" @click="remove(i)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div v-for="sub in subjects[level]">
+  <input type="number" v-model.number="marks[sub]" :placeholder="sub">
+</div>
+
+<button @click="addStudent">add</button>
+<button @click="updateStudent" v-if="editIndex!==null">edit</button>
+<button @click="generatePDF">pdf</button>
+
+</div>
+
+<div class="card">
+
+<table>
+<tr>
+<th>name</th>
+<th>level</th>
+<th>Total</th>
+<th>Avg</th>
+<th>Status</th>
+<th>action</th>
+</tr>
+
+
+<td>
+<button @click="edit(i)">Edit</button>
+<button @click="remove(i)">delete</button>
+</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+<canvas id="chart"></canvas>
+</div>
+
 </div>
 
 </div>
 
 <script>
-const app = Vue.createApp({
-data() {
-    return {
-        username: "",
-        password: "",
-        error: "",
-        loggedIn: localStorage.getItem("loggedIn") === "true",
+Vue.createApp({
 
-        users: {
-            teacher: "1234"
-        },
+data(){
+return{
+logged:false,
+user:"",
+pass:"",
+error: "",
 
-        name: "",
-        level: "primary",
-        marks: {},
-        search: "",
+dark:false,
+lang:"en",
 
-        // LOAD ON REFRESH
-        students: JSON.parse(localStorage.getItem("students") || "[]"),
+search:"",
 
-        mockNames: ["John","Alice","Eric","Divine","Grace","Patrick"],
+name:"",
+level:"primary",
+marks:{},
 
-        subjects: {
-            nursery: ["literacy","numeracy","sport"],
-            primary: ["math","science","english"],
-            secondary: ["mathematics","biology","physics"],
-            tss: ["mathematics","entrepreneurship","computer science"]
-        }
-    }
+editIndex:null,
+
+students:[],
+
+chart:null,
+
+subjects:{
+primary:["Math","English","Science"],
+secondary:["Math","Biology","Physics"],
+tss:["Math","Entrepreneurship","Computer"]
+}
+}
 },
 
-computed: {
-    filteredStudents() {
-        return this.students.filter(s =>
-            s.name.toLowerCase().includes(this.search.toLowerCase())
-        );
-    },
-
-    passCount() {
-        return this.students.filter(s => Number(this.getAverage(s)) >= 50).length;
-    },
-
-    failCount() {
-        return this.students.filter(s => Number(this.getAverage(s)) < 50).length;
-    }
+computed:{
+t(){
+if(this.lang=="fr"){
+return {title:"Système de Notes",name:"Nom",search:"Recherche",add:"Ajouter",edit:"Modifier",pdf:"PDF",action:"Action",login:"Connexion",primary:"Primaire",secondary:"Secondaire",tss:"TSS"}
+}
+if(this.lang=="sw"){
+return {title:"Mfumo wa Alama",name:"Jina",search:"Tafuta",add:"Ongeza",edit:"Hariri",pdf:"PDF",action:"Kitendo",login:"Ingia",primary:"Msingi",secondary:"Sekondari",tss:"TSS"}
+}
+return {title:"Marks System",name:"Name",search:"Search",add:"Add",edit:"Update",pdf:"PDF",action:"Action",login:"Login",primary:"Primary",secondary:"Secondary",tss:"TSS"}
 },
 
-watch: {
-    level() {
-        this.marks = {};
-    }
+filtered(){
+return this.students.filter(s =>
+s.name.toLowerCase().includes(this.search.toLowerCase())
+);
+}
 },
 
-methods: {
+watch:{
+students:{
+deep:true,
+handler(){
+this.save();
+this.updateChart();
+}
+}
+},
 
-    login() {
-        if(this.users[this.username] === this.password){
-            this.loggedIn = true;
-            localStorage.setItem("loggedIn","true");
-        } else {
-            this.error = "Wrong login!";
-        }
-    },
+mounted(){
+this.load();
+this.loadSettings();
+this.checkLogin();
+},
 
-    logout() {
-        this.loggedIn = false;
-        localStorage.removeItem("loggedIn");
-    },
+methods:{
 
-    addStudent() {
-        if(!this.name) return;
+/* LOGIN */
+login(){
+if(this.user=="admin" && this.pass=="1234"){
+this.logged=true;
+localStorage.setItem("login","1");
+}
+else alert("Wrong login");
+},
 
-        this.students.push({
-            name: this.name,
-            level: this.level,
-            marks: {...this.marks}
-        });
+checkLogin(){
+this.logged = localStorage.getItem("login")==="1";
+},
 
-        this.reset();
-    },
+/* DARK */
+toggleDark(){
+this.dark=!this.dark;
+document.body.className=this.dark?"dark":"";
+localStorage.setItem("dark",this.dark);
+},
 
-    randomName() {
-        this.name = this.mockNames[Math.floor(Math.random()*this.mockNames.length)];
-    },
+/* SETTINGS */
+saveSettings(){
+localStorage.setItem("lang",this.lang);
+},
 
-    getAverage(s) {
-        let v = Object.values(s.marks);
-        if(v.length===0) return 0;
-        let t = v.reduce((a,b)=>a+b,0);
-        return (t/v.length).toFixed(1);
-    },
+loadSettings(){
+this.lang=localStorage.getItem("lang")||"en";
+this.dark=localStorage.getItem("dark")==="true";
+document.body.className=this.dark?"dark":"";
+},
 
-    getSum(s) {
-        let v = Object.values(s.marks);
-        if(v.length===0) return 0;
-        return v.reduce((a,b)=>a+b,0);
-    },
+/* STORAGE */
+save(){
+localStorage.setItem("students",JSON.stringify(this.students));
+},
 
-    getGrade(s) {
-        let a = Number(this.getAverage(s));
-        if(a>=80) return "A";
-        if(a>=70) return "B";
-        if(a>=60) return "C";
-        if(a>=50) return "D";
-        return "F";
-    },
+load(){
+this.students=JSON.parse(localStorage.getItem("students")||"[]");
+},
 
-    getClassAverage() {
-        if(this.students.length===0) return 0;
-        let t=0;
-        this.students.forEach(s=> t+=Number(this.getAverage(s)));
-        return (t/this.students.length).toFixed(1);
-    },
+/* CRUD */
+addStudent(){
+this.students.push({
+name:this.name,
+level:this.level,
+marks:{...this.marks}
+});
+this.reset();
+},
 
-    remove(i) {
-        this.students.splice(i,1);
-    },
+edit(i){
+this.name=this.students[i].name;
+this.level=this.students[i].level;
+this.marks={...this.students[i].marks};
+this.editIndex=i;
+},
 
-    save() {
-        localStorage.setItem("students", JSON.stringify(this.students));
-        alert("Data saved successfully!");
-    },
+updateStudent(){
+this.students[this.editIndex]={
+name:this.name,
+level:this.level,
+marks:{...this.marks}
+};
+this.editIndex=null;
+this.reset();
+},
 
-    reset() {
-        this.name="";
-        this.marks={};
-    }
+remove(i){
+this.students.splice(i,1);
+},
+
+reset(){
+this.name="";
+this.marks={};
+},
+
+/* CALC */
+total(s){
+return Object.values(s.marks).reduce((a,b)=>a+b,0);
+},
+
+avg(s){
+let v=Object.values(s.marks);
+return (v.reduce((a,b)=>a+b,0)/v.length||0).toFixed(1);
+},
+
+/* PDF */
+generatePDF(){
+const { jsPDF } = window.jspdf;
+const doc=new jsPDF();
+
+doc.text("STUDENT REPORT",10,10);
+
+let y=20;
+
+this.students.forEach(s=>{
+doc.text(`${s.name} | ${this.total(s)} | ${this.avg(s)}`,10,y);
+y+=10;
+});
+
+doc.save("report.pdf");
+},
+
+/* CHART */
+updateChart(){
+setTimeout(()=>{
+let ctx=document.getElementById("chart");
+
+let labels=this.students.map(s=>s.name);
+let data=this.students.map(s=>this.avg(s));
+
+if(this.chart) this.chart.destroy();
+
+this.chart=new Chart(ctx,{
+type:"bar",
+data:{
+labels:labels,
+datasets:[{
+label:"Average",
+data:data
+}]
 }
 });
 
-app.mount("#app");
+},300);
+}
+
+}
+}).mount("#app");
 </script>
-
-</body>
 <footer class="footer">
-  <div class="footer-container">
 
-    <!-- ABOUT -->
-    <div class="footer-box">
-      <h3>GS Remera TSS</h3>
-      <p>Empowering students with knowledge, skills, and values for a better future.</p>
-    </div>
+<div class="footer-container">
 
-    <!-- QUICK LINKS -->
-    <div class="footer-box">
-      <h3>Quick Links</h3>
-      <a href="index.html">Home</a><br>
-      <a href="Departments.html">Departments</a><br>
-      <a href="stakeholder.html">Stakeholder</a><br>
-      <a href="portal.html">Marks Portal</a>
-    </div>
+<div class="footer-box">
+<h3>GS Remera TSS</h3>
+<p>Empowering students with knowledge, skills, and values.</p>
+</div>
 
-    <!-- CONTACT -->
-    <div class="footer-box">
-      <h3>Contact Us</h3>
-      <p>📍 Rulindo District, Rwanda</p>
-      <p>📞 +250 7XX XXX XXX</p>
-      <p>📧 gsremera@email.com</p>
-    </div>
+<div class="footer-box">
+<h3>Quick Links</h3>
+<a href="index.html">Home</a><br>
+<a href="Departments.html">Departments</a><br>
+<a href="stakeholders.html">Stakeholders</a><br>
+<a href="location.html">Location</a><br>
+<a href="info.html">Infographic</a>
+</div>
 
-    <!-- SOCIAL -->
-    <div class="footer-box">
-      <h3>Follow Us</h3>
-     <div class="footer-box">
-  <h3>Follow Us</h3>
+<div class="footer-box">
+<h3>Contact Us</h3>
+<p>📍 Rulindo District, Rwanda</p>
+<p>📞 +250 798390856</p>
+<p>📧 gsremera@email.com</p>
+</div>
 
-  <a href="https://www.facebook.com/" target="">🌐 Facebook</a><br>
-  <a href="https://twitter.com/" target="">🐦 Twitter</a><br>
-  <a href="https://www.youtube.com/" target="">▶️ YouTube</a>
+<div class="footer-box">
+<h3>Follow Us</h3>
+<a href="#">Facebook</a><br>
+<a href="#">Twitter</a><br>
+<a href="#">YouTube</a>
+</div>
 
 </div>
-    </div>
 
-  </div>
+<div class="footer-bottom">
+<p>&copy; 2026 GS Remera TSS | All Rights Reserved</p>
+</div>
 
-  <div class="footer-bottom">
-    <p>&copy; 2026 GS Remera TSS | All Rights Reserved</p>
-  </div>
-  </footer>
+</footer>
+
+</body>
 </html>

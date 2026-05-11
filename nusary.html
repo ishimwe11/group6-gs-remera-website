@@ -127,6 +127,24 @@
 .footer-box a:hover {
     color: #fff;
 }
+nav a.active::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0px;
+    width:100%;
+    height:3px;
+    background:#0073e6;
+    border-radius:2px;
+}
+   nav a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    position: relative;
+    display: inline-block; 
+}
 
 .footer-bottom {
     text-align: center;
@@ -150,30 +168,30 @@
 <body>
 
 <header>
-           <div class="header">
-   <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
     
    
-    <img src="LOG0.png" alt="GS REMERA Logo"
-         width="100" height="100" />
+   
+    <a href="index.html"><img src="LOG0.png" width="90" height="70" alt="Logo"></a>
 
-    
-    <img src="motto.png" alt="School Motto"
-         width="100" height="100" />
-         
+    <div style="font-size: 28px; font-weight: bold; text-align: center;">
+      GS REMERA / TSS
+    </div>
 
-</div>
-    <div style="text-align:center ; font-size:50px;">WEBSITE OF GS REMERA/TSS</div>
+    <img src="motto.png" width="90" height="70">
 
-</div>
+  </div>
+
   
-  <p>Empowering Students with Knowledge and Skills</p>
+  <p style="font-size: 14px; margin: 5px 0;">
+    Empowering Students with Knowledge and Skills
+  </p>
 </header>
 
    <nav>
         <a href="index.html">Home</a>
 <a href="Departments.html">Departments</a>
-<a href="stakeholder.html">Stakeholder</a>
+<a href="stakeholders.html">Stakeholder</a>
 <a href="account.html">Acounting</a>
 <a href="portal.html">Marks Portal</a>
 <a href="events.html">Events&Publication</a>
@@ -182,11 +200,41 @@
     <h2 style="color: blue; text-align: center;">ABOUT NURSARY</h2>
     <DIV class="card">
         <H5  style="color: blue;">IMAGE</H5>
+        <img src="nars.jpeg">
     </DIV>
     <Div class="card">
-        <h5  style="color: blue;">OTHER INFO</h5>
-        </Div>
-</body>
+        <h5  style="color: blue;text-align: center;" >OTHER INFO</h5>
+        <P>This department is the foundation of education.
+           It focuses on early childhood development where 
+           children learn through play, songs, and simple activities.
+            Teachers help learners develop social behavior, basic language 
+            skills, creativity, and confidence. It also prepares children for 
+            formal learning in primary school.</P>
+                 
+          </Div>
+<div style="text-align:center; max-width:800px; margin:auto;">
+
+  <h2 style="color:blue;">OBJECTIVES</h2>
+
+  <ol style="
+    text-align:left;
+    display:inline-block;
+    font-size:18px;
+    line-height:1.8;
+  ">
+    <li>To provide a strong foundation in early childhood education</li>
+    <li>To develop children’s basic cognitive, social, and emotional skills</li>
+    <li>To teach basic skills such as counting, reading, and simple communication</li>
+    <li>To help children adapt to school life</li>
+  </ol>
+
+</div>
+            <button class="back-btn" onclick="goBack()" style="color: rgb(7, 7, 25);text-align: center;" >Back</button>
+            <script>
+            function goBack() {
+    window.history.back();
+}</script>
+
 <footer class="footer">
   <div class="footer-container">
 
@@ -202,7 +250,8 @@
       <a href="index.html">Home</a><br>
       <a href="Departments.html">Departments</a><br>
       <a href="stakeholder.html">Stakeholder</a><br>
-      <a href="portal.html">Marks Portal</a>
+     <a href="location.html">location</a><br><br>
+       <a href="info.html">infographic</a>
     </div>
 
     <div class="footer-box">
@@ -231,4 +280,6 @@
     <p>&copy; 2026 GS Remera TSS | All Rights Reserved</p>
   </div>
 </footer>
+
+</body>
 </html>

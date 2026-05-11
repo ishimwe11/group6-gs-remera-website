@@ -19,7 +19,7 @@
       color: white;
       padding: 4px 4px;
       text-align: center;
-      animation: fadeIn 1Ss ease-in;
+      animation: fadeIn 1s ease-in;
     }
 
     nav {
@@ -61,15 +61,34 @@
       gap: 20px;
     }
 
+    /* UPDATED DEPARTMENT CARD */
     .department {
-      background: #e6f0ff;
-      padding: 20px;
+      background: white;
       border-radius: 10px;
+      overflow: hidden;
       text-align: center;
       transition: transform 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .department:hover { transform: translateY(-5px); }
+
+    .department img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .department h3 {
+      margin: 10px 0;
+      color: #0073e6;
+    }
+
+    .department p {
+      font-size: 14px;
+      color: #555;
+      padding: 0 10px 10px;
+    }
 
     .gallery img {
       width: 100%;
@@ -101,179 +120,177 @@
 
     button:hover { background: #005bb5; }
 
-   .footer {
-    background: #00264d;
-    color: white;
-    padding: 40px 20px;
-}
+    .footer {
+      background: #00264d;
+      color: white;
+      padding: 40px 20px;
+    }
 
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-    margin: auto;
-}
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
 
-.footer-box h3 {
-    margin-bottom: 10px;
-}
+    .footer-box a {
+      color: #ccc;
+      text-decoration: none;
+    }
 
-.footer-box a {
-    color: #ccc;
-    text-decoration: none;
-}
+    .footer-box a:hover { color: #fff; }
 
-.footer-box a:hover {
-    color: #fff;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid #444;
-    padding-top: 10px;
-    font-size: 14px;
-}
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
+       nav a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    position: relative;
+    display: inline-block; 
+}
+    nav a.active::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0px;
+    width:100%;
+    height:3px;
+    background:#0073e6;
+    border-radius:2px;
+}
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .slider {
-    width: 400px;
-    height: 250px;
-    position: relative;
-    margin: auto;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-    opacity: 1;
-}
   </style>
 </head>
-<body>
 
+<body>
 <header>
-           <div class="header">
-   <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
     
    
-    <img src="LOG0.png" alt="GS REMERA Logo"
-         width="100" height="100" />
-
-    
-    <img src="motto.png" alt="School Motto"
-         width="100" height="100" />
-         
-
-</div>
-    <div style="text-align:center ; font-size: 50px;">WEBSITE OF GS REMERA/TSS</div>
-
-</div>
   
-  <p>Empowering Students with Knowledge and Skills</p>
+    <a href="index.html"><img src="LOG0.png" width="90" height="70" alt="Logo"></a>
+
+    <div style="font-size: 28px; font-weight: bold; text-align: center;">
+      GS REMERA / TSS
+    </div>
+
+    <img src="motto.png" width="90" height="70">
+
+  </div>
+
+  
+  <p style="font-size: 14px; margin: 5px 0;">
+    Empowering Students with Knowledge and Skills
+  </p>
 </header>
 
-   <nav>
-        <a href="index.html">Home</a>
-<a href="Departments.html">Departments</a>
-<a href="stakeholder.html">Stakeholder</a>
+<nav>
+<a href="index.html">Home</a>
+<a href="Departments.html" class="active">Departments</a>
+<a href="stakeholders.html">Stakeholder</a>
 <a href="account.html">Acounting</a>
 <a href="portal.html">Marks Portal</a>
 <a href="events.html">Events&Publication</a>
 <a href="LOGIN.HTML">LOGIN</a>
-
-    </nav>
-</header>
+</nav>
 
 <div class="container">
-      <div id="departments" class="card">
-    <h2 style="text-align:center; color: #0073e6;">Departments</h2>
-    <div class="grid">
-      <div class="department"><h3>Nursery</h3></div>
-      <div class="department"><h3>Primary</h3></div>
-      <div class="department"><h3>O-Level</h3></div>
-      <div class="department"><h3>Technical</h3></div>
-    </div>
-  </div>
 
-    <section id="departments">
-        
+<div id="departments" class="card">
+<h2 style="text-align:center; color:#0073e6;">Departments</h2>
 
-        <div class="dept">
-            <h3>NURSERY Department</h3>
-            <p>Basic education for young children.</p>
-        </div>
+<div class="grid">
 
-        <div class="dept">
-            <h3>PRIMARY Department</h3>
-            <p>General basic education.</p>
-        </div>
 
-        <div class="dept">
-            <h3>SECONDARY Department</h3>
-            <p>Combination subjects.</p>
-        </div>
+<div class="department">
+<a href="nusary.html">
+<img src="narsary.jpeg">
+<h3>Nursery</h3>
+<p>Basic education for young children.</p>
+</a>
+</div>
 
-        <div class="dept">
-            <h3>TSS</h3>
-            <p>Learn software development.</p>
-        </div>
 
-    </section>
+<div class="department">
+<a href="PRIIMAGE.HTML">
+<img src="top_image.png">
+<h3>Primary</h3>
+<p>General basic education.</p>
+</a>
+</div>
+
+<div class="department">
+<a href="o-l.html">
+<img src="SECAN.png">
+<h3>secandary</h3>
+<p>Combination subjects.</p>
+</a>
+</div>
+
+
+<div class="department">
+<a href="tss.html">
+<img src="mag.jpg">
+<h3>Technical</h3>
+<p>Learn software development.</p>
+</a>
+</div>
+
+</div>
+</div>
+
+
 
 </div>
 
-</body>
 <footer class="footer">
   <div class="footer-container">
 
-    <!-- ABOUT -->
+    
     <div class="footer-box">
       <h3>GS Remera TSS</h3>
       <p>Empowering students with knowledge, skills, and values for a better future.</p>
     </div>
 
-    <!-- QUICK LINKS -->
     <div class="footer-box">
       <h3>Quick Links</h3>
-      <a href="index.html">Home</a><br>
-      <a href="Departments.html">Departments</a><br>
-      <a href="stakeholder.html">Stakeholder</a><br>
-      <a href="portal.html">Marks Portal</a>
+      <a href="index.html">Home</a><br><br>
+      <a href="Departments.html">Departments</a><br><br>
+      <a href="stakeholder.html">Stakeholder</a><br><br>
+      <a href="location.html">Location</a><br><br>
+      <a href="info.html">Infographic</a>
     </div>
 
-    <!-- CONTACT -->
+    
     <div class="footer-box">
       <h3>Contact Us</h3>
       <p>📍 Rulindo District, Rwanda</p>
-      <p>📞 +250 7XX XXX XXX</p>
+      <p>📞 +250 798390856</p>
       <p>📧 gsremera@email.com</p>
     </div>
 
-    <!-- SOCIAL -->
+    
     <div class="footer-box">
       <h3>Follow Us</h3>
-      <p>🌐 Facebook</p>
-      <p>🐦 Twitter</p>
-      <p>▶️ YouTube</p>
+  <a href="https://www.facebook.com/" target="">🌐 Facebook</a><br><br>
+  <a href="https://twitter.com/" target="">🐦 Twitter</a><br><br>
+  <a href="https://www.youtube.com/" target="">▶️ YouTube</a>
+
+</div>
     </div>
 
   </div>
@@ -282,4 +299,7 @@
     <p>&copy; 2026 GS Remera TSS | All Rights Reserved</p>
   </div>
 </footer>
+
+
+</body>
 </html>

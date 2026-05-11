@@ -101,7 +101,7 @@
 
     button:hover { background: #005bb5; }
 
-    .footer {
+   .footer {
     background: #00264d;
     color: white;
     padding: 40px 20px;
@@ -127,7 +127,24 @@
 .footer-box a:hover {
     color: #fff;
 }
-
+nav a.active::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0px;
+    width:100%;
+    height:3px;
+    background:#0073e6;
+    border-radius:2px;
+}
+   nav a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    position: relative;
+    display: inline-block; 
+}
 .footer-bottom {
     text-align: center;
     margin-top: 20px;
@@ -135,7 +152,6 @@
     padding-top: 10px;
     font-size: 14px;
 }
-
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -145,140 +161,112 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .slider {
-    width: 400px;
-    height: 250px;
-    position: relative;
-    margin: auto;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-    opacity: 1;
-}
   </style>
 </head>
-<body>
-
+<body style="text-align: center;">
 <header>
-           <div class="header">
-   <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
     
    
-    <img src="LOG0.png" alt="GS REMERA Logo"
-         width="100" height="100" />
 
-    
-    <img src="motto.png" alt="School Motto"
-         width="100" height="100" />
-         
+    <a href="index.html"><img src="LOG0.png" width="90" height="70" alt="Logo"></a>
 
-</div>
-    <div style="text-align:center ; font-size: 50px;">WEBSITE OF GS REMERA/TSS</div>
+    <div style="font-size: 28px; font-weight: bold; text-align: center;">
+      GS REMERA / TSS
+    </div>
 
-</div>
+    <img src="motto.png" width="90" height="70">
+
+  </div>
+
   
-  <p>Empowering Students with Knowledge and Skills</p>
+  <p style="font-size: 14px; margin: 5px 0;">
+    Empowering Students with Knowledge and Skills
+  </p>
 </header>
 
    <nav>
         <a href="index.html">Home</a>
 <a href="Departments.html">Departments</a>
-<a href="stakeholder.html">Stakeholder</a>
+<a href="stakeholders.html">Stakeholder</a>
 <a href="account.html">Acounting</a>
 <a href="portal.html">Marks Portal</a>
 <a href="events.html">Events&Publication</a>
-<a href="LOGIN.HTML">LOGIN</a>
 
     </nav>
-</header>
+<h2 style="text-align: center; color: blue;">ABOUT THE O-LEVEL</h2>
+<DIV class="card">
+    
+    <h3 style="color: blue;">IMAGE</h3>
+    <img src="8.jpeg">
+</DIV>
 
+<DIV class="card">
+    
+    <h3 style="color: blue;">OTHER INFO</h3>
+    <P>This department deepens students’ academic knowledge and skills.
+         Learners specialize in different subject combinations depending on
+          their interests and career goals. It also focuses on preparing students 
+          for national exams, higher education, and professional life. Leadership, discipline,
+           and responsibility are also emphasized.</P>
+</DIV>
+ <div style="text-align:center; max-width:800px; margin:auto;">
 
+  <h2 style="color:blue;">OBJECTIVES</h2>
 
-<body>
+  <ol style="
+    text-align:left;
+    display:inline-block;
+    font-size:18px;
+    line-height:1.8;
+  ">
+  <li>To provide advanced academic knowledge in different subjects</li>
+  <li>To prepare students for national examinations and higher studies</li>
+  <li>To develop critical thinking and problem-solving skills</li>
+  <li>To guide students in choosing future careers</li>
+  </ol>
 
-<div class="stakeholder-section">
-    <h1 style="text-align: center; color: #0073e6;">School Stakeholders</h1>
-    <p>People involved in the success of the school</p>
-
-    <div class="container">
-
-        <div class="card">
-            <h3>Students</h3>
-            <p>Main beneficiaries of education.</p>
-        </div>
-
-        <div class="card">
-            <h3>Teachers</h3>
-            <p>Provide knowledge and guidance.</p>
-        </div>
-
-        <div class="card">
-            <h3>Parents</h3>
-            <p>Support students and school activities.</p>
-        </div>
-
-        <div class="card">
-            <h3>Administration</h3>
-            <p>Manage school operations.</p>
-        </div>
-
-        <div class="card">
-            <h3>Government</h3>
-            <p>Provides policies and support.</p>
-        </div>
-
-        <div class="card">
-            <h3>Community</h3>
-            <p>Supports and benefits from the school.</p>
-        </div>
-
-    </div>
 </div>
-
-</body>
+     <button class="back-btn" onclick="goBack()">Back</button>
+            <script>
+            function goBack() {
+    window.history.back();
+}</script>
+    </body>
 <footer class="footer">
   <div class="footer-container">
 
-    <!-- ABOUT -->
+    
     <div class="footer-box">
       <h3>GS Remera TSS</h3>
       <p>Empowering students with knowledge, skills, and values for a better future.</p>
     </div>
 
-    <!-- QUICK LINKS -->
     <div class="footer-box">
       <h3>Quick Links</h3>
-      <a href="index.html">Home</a><br>
-      <a href="Departments.html">Departments</a><br>
-      <a href="stakeholder.html">Stakeholder</a><br>
-      <a href="portal.html">Marks Portal</a>
+      <a href="index.html">Home</a><br><br>
+      <a href="Departments.html">Departments</a><br><br>
+      <a href="stakeholder.html">Stakeholder</a><br><br>
+     <a href="location.html">location</a><br><br>
+       <a href="info.html">infographic</a>
     </div>
 
-    <!-- CONTACT -->
+    
     <div class="footer-box">
       <h3>Contact Us</h3>
       <p>📍 Rulindo District, Rwanda</p>
-      <p>📞 +250 7XX XXX XXX</p>
+      <p>📞 +250 798390856</p>
       <p>📧 gsremera@email.com</p>
     </div>
 
-    <!-- SOCIAL -->
+    
     <div class="footer-box">
       <h3>Follow Us</h3>
-      <p>🌐 Facebook</p>
-      <p>🐦 Twitter</p>
-      <p>▶️ YouTube</p>
+  <a href="https://www.facebook.com/" target="">🌐 Facebook</a><br><br>
+  <a href="https://twitter.com/" target="">🐦 Twitter</a><br><br>
+  <a href="https://www.youtube.com/" target="">▶️ YouTube</a>
+
+</div>
     </div>
 
   </div>
@@ -287,4 +275,7 @@
     <p>&copy; 2026 GS Remera TSS | All Rights Reserved</p>
   </div>
 </footer>
+
+
+
 </html>

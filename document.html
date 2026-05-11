@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced School Announcement System</title>
+
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial;
+    background:#eef2f7;
+}
+
+/* LOGIN */
+.login-box{
+    width:350px;
+    background:white;
+    margin:100px auto;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.login-box h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#004080;
+}
+
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.login-box button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#004080;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.login-box button:hover{
+    background:#0066cc;
+}
+
+/* MAIN */
+.container{
+    max-width:900px;
+    margin:20px auto;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+header{
+    background:linear-gradient(45deg,#004080,#0073e6);
+    color:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px solid white;
+    margin-bottom:10px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input, textarea, select{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+textarea{
+    resize:none;
+}
+
+.btns{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+button{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:white;
+    font-size:16px;
+}
+
+.save-btn{
+    background:#151571;
+}
+
+.pdf-btn{
+    background:#004080;
+}
+
+.print-btn{
+    background:#290ab0;
+}
+
+.delete-btn{
+    background:#dc3545;
+}
+
+.logout-btn{
+    background:rgb(11, 20, 194);
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.preview{
+    margin-top:30px;
+    border:2px dashed #004080;
+    padding:20px;
+    border-radius:10px;
+    background:#f9f9f9;
+}
+
+.preview h2{
+    text-align:center;
+    color:#004080;
+    margin-bottom:15px;
+}
+
+.signature{
+    margin-top:40px;
+    text-align:right;
+}
+
+.signature img{
+    width:120px;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    color:#555;
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box span{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#004080;
+    font-weight:bold;
+}
+
+@media(max-width:700px){
+
+    .btns{
+        flex-direction:column;
+    }
+
+    .container{
+        margin:10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- LOGIN -->
+    <div v-if="!loggedIn" class="login-box">
+
+        <h2>School Login</h2>
+
+        <input type="text" v-model="username" placeholder="Username">
+
+        <!-- SHOW PASSWORD -->
+        <div class="password-box">
+
+            <input 
+                :type="showPassword ? 'text' : 'password'"
+                v-model="password"
+                placeholder="Password"
+            >
+
+            <span @click="showPassword=!showPassword">
+                {{ showPassword ? 'Hide' : 'Show' }}
+            </span>
+
+        </div>
+
+        <button @click="login">Login</button>
+
+    </div>
+
+    <!-- MAIN SYSTEM -->
+    <div v-if="loggedIn" class="container">
+
+        <header>
+
+            <img src="master.png" class="logo">
+
+            <h1>GS REMERA TSS</h1>
+
+            <p>Official Announcement System</p>
+
+        </header>
+
+        <!-- FORM -->
+        <div class="form-group">
+
+            <label>Student Name</label>
+
+            <input type="text" v-model="student">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Class</label>
+
+            <select v-model="className">
+                <option>S1</option>
+                <option>S2</option>
+                <option>S3</option>
+                <option>S4</option>
+                <option>S5</option>
+                <option>S6</option>
+                <option>L3</option>
+                <option>L4</option>
+                <option>L5</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Announcement Type</label>
+
+            <select v-model="type">
+                <option>Meeting</option>
+                <option>Exam</option>
+                <option>Discipline</option>
+                <option>Fees</option>
+                <option>General</option>
+                <option>TSS</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Announcement Message</label>
+
+            <textarea rows="6" v-model="message"></textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Date</label>
+
+            <input type="date" v-model="date">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Student Photo</label>
+
+            <input type="file" @change="uploadPhoto">
+
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="btns">
+
+            <button class="save-btn" @click="saveData">
+                Save
+            </button>
+
+            <button class="pdf-btn" @click="generatePDF">
+                Generate PDF
+            </button>
+
+            <button class="print-btn" @click="printPage">
+                Print
+            </button>
+
+            <button class="delete-btn" @click="deleteData">
+                Delete
+            </button>
+
+            <button class="logout-btn" @click="logout">
+                Logout
+            </button>
+
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="preview">
+
+            <h2>SCHOOL ANNOUNCEMENT</h2>
+
+            <p><b>Student:</b> {{student}}</p>
+
+            <p><b>Class:</b> {{className}}</p>
+
+            <p><b>Type:</b> {{type}}</p>
+
+            <p><b>Date:</b> {{date}}</p>
+
+            <br>
+
+            <p>{{message}}</p>
+
+            <div v-if="photo">
+
+                <br>
+
+                <img :src="photo" width="150">
+
+            </div>
+
+            <div class="signature">
+
+                <p><b>Headmaster Signature</b></p>
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Signature.png">
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            © 2026 GS REMERA TSS - All Rights Reserved
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const { createApp } = Vue;
+
+createApp({
+
+    data(){
+        return{
+
+            loggedIn:false,
+
+            username:"",
+            password:"",
+
+            showPassword:false,
+
+            student:"",
+            className:"S1",
+            type:"General",
+            message:"",
+            date:"",
+            photo:""
+        }
+    },
+
+    mounted(){
+
+        if(localStorage.getItem("announcement")){
+
+            let data = JSON.parse(localStorage.getItem("announcement"));
+
+            this.student = data.student;
+            this.className = data.className;
+            this.type = data.type;
+            this.message = data.message;
+            this.date = data.date;
+            this.photo = data.photo;
+        }
+    },
+
+    methods:{
+
+        login(){
+
+            if(this.username==="admin" && this.password==="1234"){
+
+                this.loggedIn = true;
+
+            }else{
+
+                alert("Wrong Username or Password");
+            }
+        },
+
+        logout(){
+
+            this.loggedIn = false;
+        },
+
+        saveData(){
+
+            const data = {
+
+                student:this.student,
+                className:this.className,
+                type:this.type,
+                message:this.message,
+                date:this.date,
+                photo:this.photo
+            };
+
+            localStorage.setItem("announcement", JSON.stringify(data));
+
+            alert("Saved Successfully");
+        },
+
+        deleteData(){
+
+            if(confirm("Are you sure you want to delete data?")){
+
+                localStorage.removeItem("announcement");
+
+                this.student = "";
+                this.className = "S1";
+                this.type = "General";
+                this.message = "";
+                this.date = "";
+                this.photo = "";
+
+                alert("Data Deleted Successfully");
+            }
+        },
+
+        uploadPhoto(event){
+
+            const file = event.target.files[0];
+
+            const reader = new FileReader();
+
+            reader.onload = (e)=>{
+
+                this.photo = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        },
+
+        async generatePDF(){
+
+            const { jsPDF } = window.jspdf;
+
+            const doc = new jsPDF();
+
+            doc.setFontSize(22);
+            doc.text("GS REMERA TSS", 65, 20);
+
+            doc.setFontSize(16);
+            doc.text("School Announcement", 65, 35);
+
+            doc.setFontSize(12);
+
+            doc.text("Student: " + this.student, 20, 60);
+            doc.text("Class: " + this.className, 20, 75);
+            doc.text("Type: " + this.type, 20, 90);
+            doc.text("Date: " + this.date, 20, 105);
+
+            doc.text("Message:", 20, 125);
+
+            doc.text(this.message, 20, 140,{
+                maxWidth:170
+            });
+
+            doc.text("Headmaster Signature", 130, 250);
+
+            doc.save("school_announcement.pdf");
+        },
+
+        printPage(){
+
+            window.print();
+        }
+
+    }
+
+}).mount("#app");
+</script>
+
+</body>
+</html>

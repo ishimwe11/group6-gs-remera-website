@@ -123,7 +123,24 @@
     color: #ccc;
     text-decoration: none;
 }
-
+nav a.active::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0px;
+    width:100%;
+    height:3px;
+    background:#0073e6;
+    border-radius:2px;
+}
+   nav a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    position: relative;
+    display: inline-block; 
+}
 .footer-box a:hover {
     color: #fff;
 }
@@ -147,32 +164,29 @@
   </style>
 </head>
 <body style="text-align: center;">
-
 <header>
-           <div class="header">
- <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
     
-   
-    <img src="LOG0.png" alt="GS REMERA Logo"
-         width="100" height="100" />
+    <a href="index.html"><img src="LOG0.png" width="90" height="70" alt="Logo"></a>
 
-    
-    <img src="motto.png" alt="School Motto"
-         width="100" height="100" />
-         
+    <div style="font-size: 28px; font-weight: bold; text-align: center;">
+      GS REMERA / TSS
+    </div>
 
-</div>
-    <div style="text-align:center ; font-size: 50px;">WEBSITE OF GS REMERA/TSS</div>
+    <img src="motto.png" width="90" height="70">
 
-</div>
+  </div>
+
   
-  <p>Empowering Students with Knowledge and Skills</p>
+  <p style="font-size: 14px; margin: 5px 0;">
+    Empowering Students with Knowledge and Skills
+  </p>
 </header>
 
    <nav>
         <a href="index.html">Home</a>
 <a href="Departments.html">Departments</a>
-<a href="stakeholder.html">Stakeholder</a>
+<a href="stakeholders.html">Stakeholder</a>
 <a href="account.html">Acounting</a>
 <a href="portal.html">Marks Portal</a>
 <a href="events.html">Events&Publication</a>
@@ -181,8 +195,42 @@
     <h2 style="text-align: center; color: #0073e6;">IMAGE OF SOFTWARE DEVELOPMENT</h2>
     <img src="cla.png" width="900px; " style="text-align: center;"/>
      <img src="CLASS.jpeg" width="900px";  style="text-align: center;"/>
-      <img src="c.jpg" width="900px";  style="text-align: center;"/>
-      <img src="a.jpg" width="900px";  style="text-align: center;"/>
+     
+       <div class="card">
+        <h2 style="text-align: center;color: blue;">OTHER INFORMATION</h2>
+        <p>This department is designed to equip learners with real-world skills
+           in information technology and engineering-related disciplines, preparing
+            them for both employment and self-employment after graduation. It plays an 
+            important role in supporting a country’s development by producing skilled 
+            technicians, developers, and innovators who can work in the modern digital economy.</p><br>
+
+<p>In TSS, students are trained in areas such as software development, computer networking,
+   database management, system design, and computer maintenance. Through projects and practical
+    work, learners develop the ability to create, manage, and maintain technological systems used
+     in schools, businesses, and organizations.</p>
+       </div>
+       <div style="text-align:center; max-width:800px; margin:auto;">
+
+  <h2 style="color:blue;">OBJECTIVES</h2>
+
+  <ol style="
+    text-align:left;
+    display:inline-block;
+    font-size:18px;
+    line-height:1.8;
+  ">
+ <li>To teach ICT and technical skills such as programming, networking, and databases</li>
+  <li>To prepare students for employment and entrepreneurship</li>
+  <li>To develop practical and hands-on skills through projects</li>
+  <li>To integrate technology into learning and real-life applications</li>
+  </ol>
+
+</div>
+           <button class="back-btn" onclick="goBack()">Back</button>
+            <script>
+            function goBack() {
+    window.history.back();
+}</script>
 
     </body>
   <footer class="footer">
@@ -197,9 +245,9 @@
     
     <div class="footer-box">
       <h3>Quick Links</h3>
-      <a href="index.html">Home</a><br>
-      <a href="Departments.html">Departments</a><br>
-      <a href="stakeholder.html">Stakeholder</a><br>
+      <a href="index.html">Home</a><br><br>
+      <a href="Departments.html">Departments</a><br><br>
+      <a href="stakeholders.html">Stakeholder</a><br><br>
       <a href="portal.html">Marks Portal</a>
     </div>
 
